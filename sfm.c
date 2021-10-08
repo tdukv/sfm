@@ -1969,9 +1969,9 @@ start(void)
 		die("UNKNOWN FAILURE");
 	}
 
-	if (tb_select_output_mode(TB_OUTPUT_256) != TB_OUTPUT_256)
-		if (tb_select_output_mode(TB_OUTPUT_NORMAL) != TB_OUTPUT_NORMAL)
-			die("output error");
+
+	if (tb_select_output_mode(TB_OUTPUT_NORMAL) != TB_OUTPUT_NORMAL)
+		die("output error");
 	draw_frame();
 	set_panes();
 	get_editor();
