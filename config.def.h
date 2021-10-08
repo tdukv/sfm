@@ -3,24 +3,24 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-/* colors                      fg,  bg */
-static const Cpair cdir    = { 31, 0 };
-static const Cpair cfile   = { 243, 0 };
-static const Cpair clnk    = { 96, 0 };
-static const Cpair cblk    = { 95, 0 };
-static const Cpair cchr    = { 94, 0 };
-static const Cpair cifo    = { 93, 0 };
-static const Cpair csock   = { 92, 0 };
-static const Cpair cexec   = { 91, 0 };
-static const Cpair cother  = { 90, 0 };
+/* colors                      fg,                   bg */
+static const Cpair cdir    = { TB_BLUE    | TB_BOLD, TB_BLACK };
+static const Cpair cfile   = { TB_WHITE,             TB_BLACK };
+static const Cpair clnk    = { TB_CYAN    | TB_BOLD, TB_BLACK };
+static const Cpair cblk    = { TB_YELLOW,            TB_BLACK };
+static const Cpair cchr    = { TB_YELLOW  | TB_BOLD, TB_BLACK };
+static const Cpair cifo    = { TB_YELLOW,            TB_BLACK };
+static const Cpair csock   = { TB_MAGENTA | TB_BOLD, TB_BLACK };
+static const Cpair cexec   = { TB_GREEN   | TB_BOLD, TB_BLACK };
+static const Cpair cother  = { TB_RED,               TB_BLACK };
 
 static const Cpair cframe  = { 233, 233 };
 static const Cpair cpanell = { 166, 233 };
 static const Cpair cpanelr = { 5,   233 };
-static const Cpair cerr    = { 124, 0 };
-static const Cpair cprompt = { 33,  0 };
-static const Cpair csearch = { 255, 0 };
-static const Cpair cstatus = { 243, 0 };
+static const Cpair cerr    = { 124, TB_BLACK };
+static const Cpair cprompt = { 33,  TB_BLACK };
+static const Cpair csearch = { 255, TB_BLACK };
+static const Cpair cstatus = { 243, TB_BLACK };
 
 /* commands */
 #if defined(__linux__)
