@@ -1697,7 +1697,7 @@ refresh_pane(Pane *pane)
 
 	/* print current directory title */
 	pane->dircol.fg |= TB_BOLD;
-	printf_tb(pane->x_srt, 0, pane->dircol, " %.*s", hwidth, pane->dirn);
+	printf_tb(pane->x_srt, 0, pane->dircol, " %.*s ", hwidth, pane->dirn);
 }
 
 static void
@@ -1899,13 +1899,11 @@ draw_frame(void)
 		tb_change_cell(i, theight - 2, u_hl, cframe.fg, cframe.bg);
 	}
 
-	/* 4 vertical lines */
+	/* 3 vertical lines */
 	for (i = 1; i < theight - 1; ++i) {
 		tb_change_cell(0, i, u_vl, cframe.fg, cframe.bg);
 		tb_change_cell(
 			(twidth - 1) / 2, i - 1, u_vl, cframe.fg, cframe.bg);
-		tb_change_cell(((twidth - 1) / 2) + 1, i - 1, u_vl, cframe.fg,
-			cframe.bg);
 		tb_change_cell(twidth - 1, i, u_vl, cframe.fg, cframe.bg);
 	}
 
