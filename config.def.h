@@ -3,24 +3,24 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-/* colors                      fg,                   bg */
-static const Cpair cdir    = { TB_BLUE    | TB_BOLD, TB_BLACK };
-static const Cpair cfile   = { TB_WHITE,             TB_BLACK };
-static const Cpair clnk    = { TB_CYAN    | TB_BOLD, TB_BLACK };
-static const Cpair cblk    = { TB_YELLOW,            TB_BLACK };
-static const Cpair cchr    = { TB_YELLOW  | TB_BOLD, TB_BLACK };
-static const Cpair cifo    = { TB_YELLOW,            TB_BLACK };
-static const Cpair csock   = { TB_MAGENTA | TB_BOLD, TB_BLACK };
-static const Cpair cexec   = { TB_GREEN   | TB_BOLD, TB_BLACK };
-static const Cpair cother  = { TB_RED,               TB_BLACK };
+/* colors                      fg,                      bg */
+static const Cpair cdir    = { TB_BLUE    | TB_BOLD,    TB_DEFAULT };
+static const Cpair cfile   = { TB_WHITE,                TB_DEFAULT };
+static const Cpair clnk    = { TB_CYAN    | TB_BOLD,    TB_DEFAULT };
+static const Cpair cblk    = { TB_YELLOW,               TB_DEFAULT };
+static const Cpair cchr    = { TB_YELLOW  | TB_BOLD,    TB_DEFAULT };
+static const Cpair cifo    = { TB_YELLOW,               TB_DEFAULT };
+static const Cpair csock   = { TB_MAGENTA | TB_BOLD,    TB_DEFAULT };
+static const Cpair cexec   = { TB_GREEN   | TB_BOLD,    TB_DEFAULT };
+static const Cpair cother  = { TB_RED,                  TB_DEFAULT };
 
-static const Cpair cframe  = { 233, 233 };
-static const Cpair cpanell = { 166, 233 };
-static const Cpair cpanelr = { 5,   233 };
-static const Cpair cerr    = { 124, TB_BLACK };
-static const Cpair cprompt = { 33,  TB_BLACK };
-static const Cpair csearch = { 255, TB_BLACK };
-static const Cpair cstatus = { 243, TB_BLACK };
+static const Cpair cframe  = { TB_DEFAULT | TB_BOLD,    TB_DEFAULT };
+static const Cpair cpanell = { TB_GREEN   | TB_BOLD,    TB_DEFAULT };
+static const Cpair cpanelr = { TB_GREEN   | TB_BOLD,    TB_DEFAULT };
+static const Cpair cerr    = { TB_RED     | TB_REVERSE, TB_DEFAULT };
+static const Cpair cprompt = { TB_MAGENTA,              TB_DEFAULT };
+static const Cpair csearch = { TB_CYAN,                 TB_DEFAULT };
+static const Cpair cstatus = { TB_GREEN   | TB_BOLD,    TB_DEFAULT };
 
 /* commands */
 #if defined(__linux__)
