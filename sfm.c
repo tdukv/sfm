@@ -422,8 +422,9 @@ check_dir(char *path)
 static int
 sort_name(const void *const A, const void *const B)
 {
-	mode_t data1 = (*(Entry *)A).mode;
-	mode_t data2 = (*(Entry *)B).mode;
+	mode_t data1 = (*(Entry *)A).mode & (S_IFMT | S_IXUSR);
+	mode_t data2 = (*(Entry *)B).mode & (S_IFMT | S_IXUSR);
+
 	switch (sort_order) {;
 	case Type:
 		if (data1 < data2)
