@@ -36,10 +36,10 @@ top
 .B G
 bottom
 .TP
-.B ctrl+u
+.B PgUp
 scroll up
 .TP
-.B ctrl+d
+.B PgDn
 scroll down
 .TP
 .B n
@@ -62,6 +62,12 @@ paste
 .TP
 .B P
 move
+.TP
+.B e
+edit file
+.TP
+.B s
+open a shell in pwd
 .TP
 .B c
 start change
@@ -130,8 +136,17 @@ and (re)compiling the source
 code. This keeps it fast, secure and simple.
 .SH ENVIRONMENT
 .TP
+.B PAGER
+open unconfigured file extention. less(1) if not set.
+.TP
 .B EDITOR
-open unconfigured file extention. vi(1) if not set.
+edit unconfigured file extention. vi(1) if not set.
+.TP
+.B SFM_SHELL
+program to open by pressing the 'b' key. can be different than user's default shell or even used to run another command
+.TP
+.B SHELL
+default shell if "SFM_SHELL" is not set. /bin/sh if neither is set.
 .TP
 .B HOME
 right pane default directory. / if not set.
