@@ -226,6 +226,7 @@ static struct timespec gtimeout;
 #endif
 enum { Left, Right }; /* panes */
 enum { Wait, DontWait }; /* spawn forks */
+typedef enum { Type, Dfrst, Name } Order;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -421,18 +422,24 @@ check_dir(char *path)
 static int
 sort_name(const void *const A, const void *const B)
 {
-	int result;
 	mode_t data1 = (*(Entry *)A).mode;
 	mode_t data2 = (*(Entry *)B).mode;
-
-	if (data1 < data2) {
-		return -1;
-	} else if (data1 == data2) {
-		result = strncmp((*(Entry *)A).name, (*(Entry *)B).name, MAX_N);
-		return result;
-	} else {
-		return 1;
+	switch (sort_order) {;
+	case Type:
+		if (data1 < data2)
+			return -1;
+		if (data1 > data2)
+			return 1;
+		break;
+	case Dfrst:
+		if (S_ISDIR(data1) && !S_ISDIR(data2))
+			return -1;
+		if (S_ISDIR(data2) && !S_ISDIR(data1))
+			return 1;
+		break;
 	}
+
+	return strncmp((*(Entry *)A).name, (*(Entry *)B).name, MAX_N);
 }
 
 static void

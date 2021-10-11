@@ -149,6 +149,9 @@ static const mode_t nf_perm   = S_IRUSR | S_IWUSR;
 /* dotfiles */
 static int show_dotfiles = 1;
 
+/* sort order */
+static Order sort_order = Dfrst;
+
 /* statusbar */
 static const char dtfmt[] = "%F %R"; /* date time format */
 
