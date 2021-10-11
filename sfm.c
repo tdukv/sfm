@@ -182,8 +182,7 @@ static void refresh_pane(Pane *);
 static void set_direntr(Pane *, struct dirent *, DIR *, char *);
 static int listdir(Pane *);
 static void t_resize(void);
-static void get_editor(void);
-static void get_shell(void);
+static void get_envs(void);
 static void opnsh(const Arg *arg);
 static void set_panes(void);
 static void draw_frame(void);
@@ -1857,18 +1856,14 @@ t_resize(void)
 }
 
 static void
-get_editor(void)
+get_envs(void)
 {
 	editor[0] = getenv("EDITOR");
 	editor[1] = NULL;
 
 	if (editor[0] == NULL)
 		editor[0] = fed;
-}
 
-static void
-get_shell(void)
-{
 	shell[0] = getenv("SFM_SHELL");
 	shell[1] = NULL;
 
@@ -2005,8 +2000,7 @@ start(void)
 		die("output error");
 	draw_frame();
 	set_panes();
-	get_editor();
-	get_shell();
+	get_envs();
 	PERROR(start_signal() < 0);
 	PERROR(fsev_init() < 0);
 	PERROR(listdir(&panes[Left]) < 0);
