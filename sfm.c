@@ -184,6 +184,7 @@ static int listdir(Pane *);
 static void t_resize(void);
 static void get_envs(void);
 static void opnsh(const Arg *arg);
+static void edit(const Arg *arg);
 static void set_panes(void);
 static void draw_frame(void);
 static void refresh(const Arg *arg);
@@ -195,9 +196,12 @@ static Pane panes[2];
 static Pane *cpane;
 static int pane_idx;
 static char *editor[2];
-static char fed[] = "vi";
 static char *shell[2];
+static char *pager[2];
+static char *viewer[2];
+static char fed[] = "vi";
 static char sh[] = "/bin/sh";
+static char pg[] = "less";
 static int theight, twidth, hwidth, scrheight;
 static int *sel_indexes;
 static size_t sel_len = 0;
@@ -1060,7 +1064,7 @@ opnf(char *fn)
 	free(ex);
 
 	if (c < 0) /* extension not found open in editor */
-		return spawn(editor, 1, NULL, 0, fn, Wait);
+		return spawn(viewer, 1, NULL, 0, fn, Wait);
 	else
 		return spawn(
 			(char **)rules[c].v, rules[c].vlen, NULL, 0, fn, Wait);
@@ -1079,6 +1083,14 @@ opnsh(const Arg *arg)
 	t_resize();
 	if (s < 0)
 		print_error("process failed non-zero exit");
+}
+
+static void
+edit(const Arg *arg)
+{
+	*viewer = *editor;
+	mvfwd(arg);
+	*viewer = *pager;
 }
 
 static int
@@ -1864,6 +1876,12 @@ get_envs(void)
 	if (editor[0] == NULL)
 		editor[0] = fed;
 
+	pager[0] = getenv("PAGER");
+	pager[1] = NULL;
+
+	if (pager[0] == NULL)
+		pager[0] = pg;
+
 	shell[0] = getenv("SFM_SHELL");
 	shell[1] = NULL;
 
@@ -1872,6 +1890,8 @@ get_envs(void)
 
 	if (shell[0] == NULL)
 		shell[0] = sh;
+
+	*viewer = *pager;
 }
 
 static void
