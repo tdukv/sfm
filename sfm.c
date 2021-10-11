@@ -198,7 +198,7 @@ static int pane_idx;
 static char *editor[2];
 static char *shell[2];
 static char *pager[2];
-static char *viewer[2];
+static char **viewer;
 static char fed[] = "vi";
 static char sh[] = "/bin/sh";
 static char pg[] = "less";
@@ -1088,9 +1088,9 @@ opnsh(const Arg *arg)
 static void
 edit(const Arg *arg)
 {
-	*viewer = *editor;
+	viewer = editor;
 	mvfwd(arg);
-	*viewer = *pager;
+	viewer = pager;
 }
 
 static int
@@ -1891,7 +1891,7 @@ get_envs(void)
 	if (shell[0] == NULL)
 		shell[0] = sh;
 
-	*viewer = *pager;
+	viewer = pager;
 }
 
 static void
