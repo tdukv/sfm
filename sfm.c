@@ -440,7 +440,7 @@ sort_name(const void *const A, const void *const B)
 		break;
 	}
 
-	return strncmp((*(Entry *)A).name, (*(Entry *)B).name, MAX_N);
+	return strcasecmp((*(Entry *)A).name, (*(Entry *)B).name);
 }
 
 static void
