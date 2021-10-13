@@ -48,7 +48,7 @@ static const size_t delconf_len     = LEN(delconf);
 static const char root[]   = "/";
 
 /* software */
-static const char *mpv[]          = { "mpv", "--fullscreen" };
+static const char *mpv[]          = { "mpv" };
 static const char *sxiv[]         = { "sxiv" };
 static const char *surf[]         = { "surf" };
 static const char *mupdf[]        = { "mupdf", "-I" };
