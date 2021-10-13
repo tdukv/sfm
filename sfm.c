@@ -1017,7 +1017,7 @@ frules(char *ex)
 
 	for (c = 0; c < LEN(rules); c++)
 		for (d = 0; d < rules[c].exlen; d++)
-			if (strncmp(rules[c].ext[d], ex, MAX_EXT) == 0)
+			if (strncasecmp(rules[c].ext[d], ex, MAX_EXT) == 0)
 				return c;
 	return -1;
 }
