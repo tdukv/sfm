@@ -226,7 +226,7 @@ static struct timespec gtimeout;
 #endif
 enum { Left, Right }; /* panes */
 enum { Wait, DontWait }; /* spawn forks */
-typedef enum { Type, Dfrst, Name } Order;
+typedef enum { Sort_Type, Sort_Name, Sort_Size, Sort_Time } Order;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -425,18 +425,23 @@ sort_name(const void *const A, const void *const B)
 	mode_t data1 = (*(Entry *)A).mode & (S_IFMT | S_IXUSR);
 	mode_t data2 = (*(Entry *)B).mode & (S_IFMT | S_IXUSR);
 
-	switch (sort_order) {;
-	case Type:
+	if (dirs_first) {
+		if (S_ISDIR(data1) && !S_ISDIR(data2))
+			return -1;
+		if (S_ISDIR(data2) && !S_ISDIR(data1))
+			return 1;
+	}
+
+	switch (sort_order) {
+	case Sort_Type:
 		if (data1 < data2)
 			return -1;
 		if (data1 > data2)
 			return 1;
 		break;
-	case Dfrst:
-		if (S_ISDIR(data1) && !S_ISDIR(data2))
-			return -1;
-		if (S_ISDIR(data2) && !S_ISDIR(data1))
-			return 1;
+	case Sort_Size:
+	case Sort_Time:
+	case Sort_Name:
 		break;
 	}
 
