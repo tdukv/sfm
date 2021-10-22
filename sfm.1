@@ -66,8 +66,8 @@ move
 .B e
 edit file
 .TP
-.B s
-open a shell in pwd
+.B b
+spawn a shell in the current directory
 .TP
 .B c
 start change
@@ -150,6 +150,9 @@ default shell if "SFM_SHELL" is not set. /bin/sh if neither is set.
 .TP
 .B HOME
 right pane default directory. / if not set.
+.TP
+.B SHELL
+shell spawned with the 'b' key. /bin/sh if not set.
 .SH AUTHORS
 See the LICENSE file for the authors.
 .SH LICENSE
