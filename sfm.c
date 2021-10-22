@@ -1917,16 +1917,6 @@ get_envs(void)
 }
 
 static void
-get_shell(void)
-{
-	shell[0] = getenv("SHELL");
-	shell[1] = NULL;
-
-	if (shell[0] == NULL)
-		shell[0] = sh;
-}
-
-static void
 set_panes(void)
 {
 	char *home;
